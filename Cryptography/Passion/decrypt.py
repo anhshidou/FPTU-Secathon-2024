@@ -17,6 +17,6 @@ q = (tong - hieu) // 2
 n = p * q
 
 phi = (p - 1) * (q - 1)
-d = pow(e, -1, phi)
-plain = pow(c,d,n)
+d = inverse(e, phi)
+plain = pow(c, d, n)
 print(long_to_bytes(plain))
