@@ -7,7 +7,7 @@
 
 Mở file bằng ida, bật hiển thị dưới dạng pseudo code, ta thấy:
 
-Hàm main:
+Hàm `main`:
 ```
 int __fastcall main(int argc, const char **argv, const char **envp)
 {
@@ -120,8 +120,7 @@ int __fastcall main(int argc, const char **argv, const char **envp)
 
 ```
 
-Check license key
-
+Hàm `check_license_key`:
 ```
 __int64 __fastcall check_license_key(__int64 a1, __int64 a2, __int64 a3, int a4)
 {
@@ -135,3 +134,32 @@ __int64 __fastcall check_license_key(__int64 a1, __int64 a2, __int64 a3, int a4)
   return 1LL;
 }
 ```
+Trong hàm main gọi hàm `check_license_key` với các tham số &s[v4], v7, v8, 38LL; ta sẽ check hàm `check_license_key` với các tham số tương ứng.
+
+Tại đấy, ta thấy rằng nếu i + &s[v4] = (4LL * i + v7) - (4LL * i + v8) trong 38 lần check (lặp từ i = 0 đến i = 38) thì hàm sẽ trả về true. Do đó ta biết được token sẽ là v7[i] trừ v8[i] với i chạy từ 0 đến 37.
+Mặt khác do ở `main` gọi hàm `check_license_key` với kiểu dữ liệu (unsigned __int8) mà token lại là string, nên ta cần chuyển đổi từ số (kết quả của v7 -v8) về string.
+
+#Lời giải
+
+```
+v7 = [168, 193, 122, 172, 158, 108, 206, 153, 175, 175, 194, 189, 141, 127, 101, 202, 208, 116, 149, 160, 146, 179, 114, 143, 187, 159, 126, 109, 174, 156, 185, 120, 164, 189, 112, 120, 123, 145]
+v8 = [53, 87, 22, 73, 48, 1, 91, 53, 58, 62, 89, 74, 35, 28, 1, 92, 99, 17, 41, 45, 29, 79, 10, 44, 68, 58, 11, 12, 72, 38, 83, 2, 67, 74, 12, 5, 23, 45]
+
+token = []
+
+#Tính ra phần token từ v7 và v8
+for i in range(38):
+    token.append(chr(v7[i] - v8[i]))
+
+#Convert the list of characters to a string
+token_string = ''.join(key_main_part)
+
+#Form the full key
+flag = "FUSec{" + token_string + "}"
+
+print(flag)
+```
+
+# Flag
+
+FUSec{sjdcnksduqisjcdnmclsudhcwesafvfvasdsdd}
