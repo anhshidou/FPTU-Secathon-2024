@@ -120,6 +120,8 @@ int __fastcall main(int argc, const char **argv, const char **envp)
 
 ```
 
+Check license key
+
 ```
 __int64 __fastcall check_license_key(__int64 a1, __int64 a2, __int64 a3, int a4)
 {
