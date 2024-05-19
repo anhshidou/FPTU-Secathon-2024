@@ -119,3 +119,17 @@ int __fastcall main(int argc, const char **argv, const char **envp)
 }
 
 ```
+
+```
+__int64 __fastcall check_license_key(__int64 a1, __int64 a2, __int64 a3, int a4)
+{
+  int i; // [rsp+28h] [rbp-4h]
+
+  for ( i = 0; i < a4; ++i )
+  {
+    if ( *(_BYTE *)(i + a1) != *(_BYTE *)(4LL * i + a2) - *(_BYTE *)(4LL * i + a3) )
+      return 0LL;
+  }
+  return 1LL;
+}
+```
