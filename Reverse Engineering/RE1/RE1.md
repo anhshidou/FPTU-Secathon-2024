@@ -4,7 +4,12 @@
 
 # Phân tích
 
-``` int __fastcall main(int argc, const char **argv, const char **envp)
+
+Mở file bằng ida, bật hiển thị dưới dạng pseudo code, ta thấy:
+
+Hàm main:
+```
+int __fastcall main(int argc, const char **argv, const char **envp)
 {
   int v4; // [rsp+8h] [rbp-278h]
   int v5; // [rsp+Ch] [rbp-274h]
